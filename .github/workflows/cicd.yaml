@@ -30,7 +30,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
- 
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -49,7 +49,7 @@ jobs:
         IMAGE_TAG: latest
       run: |
       
-        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f ../myapp/Dockerfile
+        docker build    -f ../myapp/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
     - name: Update kube config
