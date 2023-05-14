@@ -2,6 +2,9 @@ name: Node js app deploy to EKS
 on:
   push:
     branches: [ "master" ]
+
+  deployment_status:
+    types: [success, failure]
   # pull_request:
   #   branches: [ "master" ]
 
