@@ -1,7 +1,8 @@
 FROM node:14-alpine
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+COPY package.json package-lock.json npm-shrinkwrap.json /app/
+
 RUN npm install --production 
 COPY . .
 EXPOSE 3000
