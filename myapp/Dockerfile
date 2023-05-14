@@ -4,7 +4,9 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json npm-shrinkwrap.json /app/
 
 RUN npm install --production 
-COPY . .
+
+COPY myapp/ /app/
+
 EXPOSE 3000
 RUN chown -R node /usr/src/app
 USER node
