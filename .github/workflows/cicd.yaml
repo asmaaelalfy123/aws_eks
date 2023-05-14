@@ -57,3 +57,14 @@ jobs:
     - name: Deploy to EKS
       run: |
         kubectl run nginx --image=nginx --port=80
+        
+    - name: Send Slack notification
+      uses: 8398a7/action-slack@v3.1.0
+      with:
+          status: ${{ github.event.deployment_status.state }}
+          text: "Deployment of ${{ github.event.deployment.environment }} ${{ github.event.deployment_status.state }} for branch ${{ github.event.deployment.ref }} in repository ${{ github.repository }}."
+          color_good: '#2eb886'
+          color_warning: '#d9b52e'
+          color_danger: '#d11f1f'
+      env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
